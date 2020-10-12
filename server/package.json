@@ -1,0 +1,41 @@
+{
+  "name": "websocket-api",
+  "version": "1.0.0",
+  "description": "API with WebSocket demonstration with Node.js",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enindu/node-js-websocket-api.git"
+  },
+  "keywords": [
+    "node-js",
+    "socket-io",
+    "bookshelf",
+    "websocket",
+    "api"
+  ],
+  "author": "Enindu Alahapperuma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enindu/node-js-websocket-api/issues"
+  },
+  "homepage": "https://github.com/enindu/node-js-websocket-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bookshelf": "^1.2.0",
+    "knex": "^0.21.6",
+    "moment": "^2.29.1",
+    "mysql": "^2.18.1",
+    "socket.io": "^2.3.0",
+    "uniqid": "^5.2.0",
+    "validatorjs": "^3.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

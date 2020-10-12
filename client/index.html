@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    html, body, button, input, select, textarea {
+      font-family: 'Rubik', sans-serif;
+    }
+  </style>
+  <title>WebSocket API</title>
+</head>
+<body>
+  <section class="section has-text-centered">
+    <h1 class="title is-1">WebSocket API</h1>
+  </section>
+  <section class="section">
+    <div class="columns">
+      <div class="column is-12">
+        <h2 class="title is-2">api.accounts</h2>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-3">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-12">
+              <h3 class="title is-3">register</h3>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-12">
+              <div class="field">
+                <label for="register-email" class="label">Enter email address</label>
+                <div class="control">
+                  <input type="email" id="register-email" class="input" placeholder="Email">
+                </div>
+              </div>
+              <div class="field">
+                <label for="register-password" class="label">Enter password</label>
+                <div class="control">
+                  <input type="password" id="register-password" class="input" placeholder="Password">
+                </div>
+              </div>
+              <div class="field">
+                <label for="register-confirm-password" class="label">Confirm password</label>
+                <div class="control">
+                  <input type="password" id="register-confirm-password" class="input" placeholder="Confirm Password">
+                </div>
+              </div>
+              <div class="field has-text-right">
+                <button id="register" class="button is-info">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="box">
+          <div class="columns">
+            <div class="column is-12">
+              <h3 class="title is-3">login</h3>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-12">
+              <div class="field">
+                <label for="login-email" class="label">Enter email address</label>
+                <div class="control">
+                  <input type="email" id="login-email" class="input" placeholder="Email">
+                </div>
+              </div>
+              <div class="field">
+                <label for="login-password" class="label">Enter password</label>
+                <div class="control">
+                  <input type="password" id="login-password" class="input" placeholder="Password">
+                </div>
+              </div>
+              <div class="field has-text-right">
+                <button id="login" class="button is-info">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script>
+    const socket = io('http://localhost:3000')
+
+    // api.accounts.register
+    document.querySelector('#register').addEventListener('click', () => {
+      socket.emit('api.accounts.register', {
+        email: document.querySelector('#register-email').value,
+        password: document.querySelector('#register-password').value,
+        confirmPassword: document.querySelector('#register-confirm-password').value
+      })
+    })
+
+    socket.on('api.accounts.register', (data) => {
+      console.log(data)
+      alert(data.message)
+    })
+
+    // api.accounts.login
+    document.querySelector('#login').addEventListener('click', () => {
+      socket.emit('api.accounts.login', {
+        email: document.querySelector('#login-email').value,
+        password: document.querySelector('#login-password').value
+      })
+    })
+
+    socket.on('api.accounts.login', (data) => {
+      console.log(data)
+      alert(data.message)
+    })
+  </script>
+</body>
+</html>
