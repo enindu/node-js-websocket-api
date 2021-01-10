@@ -1,3 +1,3 @@
 # WebSocket API
 
-API with WebSocket demonstration Node.js
+WebSocket API demonstration with Node.js
